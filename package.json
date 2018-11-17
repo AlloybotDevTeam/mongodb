@@ -2,7 +2,7 @@
   "name": "abm-mongodb",
   "version": "0.0.0",
   "description": "MongoDB Database module for Alloybot",
-  "main": "mongodb.js",
+  "main": "MongoDB.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
