@@ -1,10 +1,12 @@
 {
-  "name": "abm-mongodb",
+  "name": "@alloybot/mongodb",
   "version": "0.0.0",
   "description": "MongoDB Database module for Alloybot",
   "main": "MongoDB.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "watch": "tsc -b --clean --watch tsconfig.json",
+    "build": "tsc -b --verbose tsconfig.json",
+    "clean": "tsc -b --clean tsconfig.json"
   },
   "repository": {
     "type": "git",
