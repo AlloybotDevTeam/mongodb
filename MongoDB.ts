@@ -1,22 +1,24 @@
-import { default as Alloybot, Type, Util, ConfigBuilder } from '../../Alloybot';
+import { default as Alloybot, IFace, Util, ConfigBuilder } from '../../Alloybot';
 import { MongoClient } from 'mongodb';
 
-export default class MongoDB implements Type.IConnection {
-  public readonly name: string = 'MongoDB';
-  public readonly dependencies: string[] = [];
-  public readonly dependants: Type.IPlugin[] = Alloybot.getDependants(this.name);
-  public connection: MongoClient;
-  public config;
+export default class MongoDB extends IFace.IConnection {
+  protected Name: string = 'MongoDB';
+  protected Connection: MongoClient;
+  protected Dependencies: string[] = [];
+  protected Dependants: IFace.IPlugin[] = Alloybot.getDependants(this.Name);
+  protected Logger: Util.Logger = new Util.Logger(this.Name);
+  protected Config;
 
   constructor() {
-    let Config: ConfigBuilder = new ConfigBuilder('MongoDB', require('./package.json').version);
-    Config.addOption('uri', ['string'], 'Documentation Link Here!');
-    Config.close();
-    this.config = Config.getConfig();
+    super();
+    let _config: ConfigBuilder = new ConfigBuilder('MongoDB', require('./package.json').version);
+    _config.addOption('uri', ['string'], 'Documentation Link Here!');
+    _config.close();
+    this.Config = _config.getConfig();
   }
 
   public connect(): MongoDB {
-    this.connection = new MongoClient(this.config.uri);
+    this.Connection = new MongoClient(this.Config.uri);
     return this;
   }
 }
